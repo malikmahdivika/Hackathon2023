@@ -37,7 +37,7 @@ class Appliance:
 			this.water_cost
 		)
 
-furnace_wattage = 800 #values in kwh/month
+
 dishwasher_wattage = 20.98
 dishwasher_water = 116
 ac_wattage = 500
