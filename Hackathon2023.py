@@ -16,9 +16,9 @@ class Appliance:
         else:
             this.elec_cost = 0
 
-    def set_water_cost(this, cost):
+    def set_water_cost(this, amount, time):
         if this.has_water:
-            this.water_cost = cost
+            this.water_cost = int(amount, time)
         else:
             this.water_cost = 0
 
