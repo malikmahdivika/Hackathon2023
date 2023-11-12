@@ -113,8 +113,8 @@ if laundry_frequency == 0:
 		sum_electricity = sum_electricity
 		sum_water = sum_water
 else:
-		sum_electricity = sum_electricity + sum_electricity + ac.set_elec_cost((ac_frequency * ac_wattage), kWh_to_price)
-		sum_water = sum_water + ac.set_water_cost((ac_frequency * ac_wattage), kWh_to_price)
+		sum_electricity = sum_electricity + sum_electricity + laundry.set_elec_cost((laundry_frequency * laundry_wattage), kWh_to_price)
+		sum_water = sum_water + laundry.set_water_cost((laundry_frequency * laundry_wattage), kWh_to_price)
 print("------------------------------------------")
 
 print("Cooking at home is a good habit.")
