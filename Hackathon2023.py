@@ -10,9 +10,9 @@ class Appliance:
         this.elec_cost = 0
         this.elec_cost = 0
     
-    def set_elec_cost(this, cost):
+    def set_elec_cost(this, wattage, time):
         if this.uses_elec:
-            this.elec_cost = cost
+            this.elec_cost = int(wattage * time)
         else:
             this.elec_cost = 0
 
@@ -33,10 +33,12 @@ class Appliance:
         }
 
 furnace_wattage = 2000
-kWh_to_price = 0.258
+kWh_to_price = 0.2586
+time = int(input("How long do you want to use the furnace: "))
+f_kwats = time * furnace_wattage
 
 furnace = Appliance(name="Oven", uses_elec=True)
 
-furnace.set_elec_cost(furnace_wattage + kWh_to_price)
+furnace.set_elec_cost(f_kwats, kWh_to_price)
 
 print("Furnace costs are: ", furnace.get_elec_cost())
