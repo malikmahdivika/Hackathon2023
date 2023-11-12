@@ -38,17 +38,17 @@ class Appliance:
         )
 
 #values need to be updated  
-furnace_wattage = 1000
-dishwasher_wattage = 1000
-ac_wattage = 1000
-laundry_wattage = 1000
-stove_wattage = 1000
-oven_wattage = 1000
-tv_wattage = 1000
-shower_wattage = 1000
-bath_wattage = 1000
-gheater_wattage = 1000
-eheater_wattage = 1000
+furnace_wattage = 800 #values in kwh/month
+dishwasher_wattage = 20.98
+ac_wattage = 500
+laundry_wattage = 2.0 #kwh per load
+stove_wattage = 90
+oven_wattage = 150
+tv_wattage = 9.1
+shower_wattage = 1582 #why does a shower need electricity lol; water consumption in terms of litres/month
+bath_wattage = 150 #per bath
+gheater_wattage = 2303 #do not use electricity; gas used m^3
+eheater_wattage = 360
 kWh_to_price = 0.2586
 
 sum_water = 0
