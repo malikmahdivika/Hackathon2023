@@ -1,7 +1,7 @@
 import webbrowser
 
 class Appliance:
-    def __init__(this, name, uses_elec = False, uses_water = False):
+    def __init__(this, name, uses_elec = False, uses_water = False, uses_gas = False):
         this.name = name
         this.uses_elec = uses_elec
         this.uses_water = uses_water
@@ -25,26 +25,17 @@ class Appliance:
 
     def usage_rate(this, frequency, time):
         return
-        
-
-    def get_elec_cost(this):
-        return (
-            this.elec_cost
-        )
-    
-    def get_water_cost(this):
-        return (
-            this.water_cost
-        )
 
 #values need to be updated  
 furnace_wattage = 800 #values in kwh/month
 dishwasher_wattage = 20.98
+dishwasher_water = 116
 ac_wattage = 500
 laundry_wattage = 2.0 #kwh per load
+laundry_water = 116
 stove_wattage = 90
 oven_wattage = 150
-tv_wattage = 9.1
+tv_wattage = 9
 shower_wattage = 1582 #why does a shower need electricity lol; water consumption in terms of litres/month
 bath_wattage = 150 #per bath
 gheater_wattage = 2303 #do not use electricity; gas used m^3
@@ -85,7 +76,7 @@ else:
 
 dishwasher_frequency = int(input("So, how many times do you usually use dishwasher in 2 days?"))
 sum_electricity = dishwasher.set_elec_cost((dishwasher_frequency * dishwasher_wattage), kWh_to_price)
-sum_water =  dishwasher.set_water_cost((dishwasher_frequency * dishwasher_wattage), kWh_to_price)
+sum_water =  dishwasher.set_water_cost((dishwasher_frequency * dishwasher_water), kWh_to_price)
 print("------------------------------------------")
 
 print("Is your ac always on?")
@@ -101,8 +92,8 @@ elif ac_frequency == 3:
 print("------------------------------------------")
 
 laundry_frequency = int(input("And how often do you guys do laundry per month?"))
-sum_electricity = sum_electricity + sum_electricity + ac.set_elec_cost((ac_frequency * ac_wattage), kWh_to_price)
-sum_water = sum_water + ac.set_water_cost((ac_frequency * ac_wattage), kWh_to_price)
+sum_electricity = sum_electricity + sum_electricity + ac.set_elec_cost((laundry_frequency * laundry_wattage), kWh_to_price)
+sum_water = sum_water + ac.set_water_cost((laundry_frequency * laundry_water), kWh_to_price)
 print("------------------------------------------")
 
 stove_frequency = int(input("Cooking at home is a good habit, let's say, how many times do you cook in a week(7 days)?"))
