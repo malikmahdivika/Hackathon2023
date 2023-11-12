@@ -169,7 +169,7 @@ print("------------------------------------------")
 print("Showering is a good way to recover yourself.")
 shower_frequency = int(input("How often do you take a shower in a week: "))
 if shower_frequency != 0:
-		sum_water = sum_water + shower.set_elec_cost((shower_frequency * shower_wattage), litre_to_price)
+		sum_water = sum_water + shower.set_water_cost((shower_frequency * shower_wattage), litre_to_price)
 		print("\nTaking a bath is more comfortable than taking a shower.")
 		bath_frequency = int(input("How often do you take a bath in a month then: "))
 		if bath_frequency == 0:
