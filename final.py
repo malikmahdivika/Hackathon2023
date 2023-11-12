@@ -1,5 +1,10 @@
 import webbrowser
 
+# Average costs in Alberta
+avg_electricity_cost = 101.01
+avg_water_cost = 44.40
+avg_gas_cost = 39.41
+
 class Appliance:
 	def __init__(this, name, uses_elec = False, uses_water = False, uses_gas = False):
 		this.name = name
@@ -206,4 +211,29 @@ input("(press any key to see the result)")
 input("3...")
 input("2...")
 input("1...")
-print("\nResult")
+
+# Calculate total costs
+total_electricity_cost = sum_electricity
+total_water_cost = sum_water
+total_gas_cost = sum_gas
+
+# Compare with average costs
+elec_diff = total_electricity_cost - avg_electricity_cost
+water_diff = total_water_cost - avg_water_cost
+gas_diff = total_gas_cost - avg_gas_cost
+
+print("\nConclusion")
+if elec_diff > 0:
+    print(f"You are spending ${elec_diff:.2f} more than the average electricity cost in Alberta.")
+else:
+    print(f"You are saving ${-elec_diff:.2f} compared to the average electricity cost in Alberta.")
+
+if water_diff > 0:
+    print(f"You are spending ${water_diff:.2f} more than the average water cost in Alberta.")
+else:
+    print(f"You are saving ${-water_diff:.2f} compared to the average water cost in Alberta.")
+
+if gas_diff > 0:
+    print(f"You are spending ${gas_diff:.2f} more than the average gas cost in Alberta.")
+else:
+    print(f"You are saving ${-gas_diff:.2f} compared to the average gas cost in Alberta.")
