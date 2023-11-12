@@ -91,7 +91,7 @@ else:
 	
 dishwasher_frequency = int(input("So, how many times do you usually use dishwasher in a week: "))
 sum_electricity = dishwasher.set_elec_cost((dishwasher_frequency * dishwasher_wattage), kWh_to_price)
-sum_water =  dishwasher.set_water_cost((dishwasher_frequency * dishwasher_wattage), kWh_to_price)
+sum_water =  dishwasher.set_water_cost((dishwasher_frequency * dishwasher_water), kWh_to_price)
 print("------------------------------------------")
 
 print("Is your AC always on?")
@@ -114,7 +114,7 @@ if laundry_frequency == 0:
 		sum_water = sum_water
 else:
 		sum_electricity = sum_electricity + sum_electricity + laundry.set_elec_cost((laundry_frequency * laundry_wattage), kWh_to_price)
-		sum_water = sum_water + laundry.set_water_cost((laundry_frequency * laundry_wattage), kWh_to_price)
+		sum_water = sum_water + laundry.set_water_cost((laundry_frequency * laundry_water), kWh_to_price)
 print("------------------------------------------")
 
 print("Cooking at home is a good habit.")
