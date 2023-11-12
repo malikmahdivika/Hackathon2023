@@ -50,7 +50,8 @@ shower_wattage = 1582 #why does a shower need electricity lol; water consumption
 bath_wattage = 150 #per bath
 gheater_wattage = 2303 #do not use electricity; gas used m^3
 eheater_wattage = 360
-kWh_to_price = 0.2586
+kWh_to_price = 0.1279
+litre_to_price = 0.0014247
 
 sum_water = 0
 sum_electricity = 0
@@ -114,7 +115,7 @@ if laundry_frequency == 0:
 		sum_water = sum_water
 else:
 		sum_electricity = sum_electricity + sum_electricity + laundry.set_elec_cost((laundry_frequency * laundry_wattage), kWh_to_price)
-		sum_water = sum_water + laundry.set_water_cost((laundry_frequency * laundry_water), kWh_to_price)
+		sum_water = sum_water + laundry.set_water_cost((laundry_frequency * laundry_water), litre_to_price)
 print("------------------------------------------")
 
 print("Cooking at home is a good habit.")
@@ -158,7 +159,7 @@ if shower_frequency != 0:
 		if bath_frequency == 0:
 				print("You should try it, you won't regret, trust me.")
 		else:
-				sum_water = sum_water + bath.set_elec_cost((bath_frequency * bath_wattage), kWh_to_price)
+				sum_water = sum_water + bath.set_elec_cost((bath_frequency * bath_wattage), litre_to_price)
 else:
 		print("Eww")
 print("------------------------------------------")
