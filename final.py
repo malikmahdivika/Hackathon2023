@@ -1,10 +1,11 @@
 import webbrowser
 
 class Appliance:
-	def __init__(this, name, uses_elec = False, uses_water = False):
+	def __init__(this, name, uses_elec = False, uses_water = False, uses_gas = False):
 		this.name = name
 		this.uses_elec = uses_elec
 		this.uses_water = uses_water
+		this.uses_gas = uses_gas
 		
 		this.elec_cost = 0
 		this.water_cost = 0
@@ -22,6 +23,13 @@ class Appliance:
 		else:
 			this.water_cost = 0
 		return this.water_cost
+
+	def set_gas_cost(this, meter_cube, time):
+		if this.uses_gas:
+			this.gas_cost = int(meter_cube * time)
+		else:
+			this.gas_cost = 0
+		return this.gas_cost
 	
 	def usage_rate(this, frequency, time):
 		return
@@ -38,23 +46,26 @@ class Appliance:
 		)
 
 
-dishwasher_wattage = 20.98
-dishwasher_water = 116
+dishwasher_wattage = 1.17
+dishwasher_water = 12.2
 ac_wattage = 500
 laundry_wattage = 2.0 #kwh per load
-laundry_water = 116
-stove_wattage = 90
-oven_wattage = 150
-tv_wattage = 9
-shower_wattage = 1582 #why does a shower need electricity lol; water consumption in terms of litres/month
+laundry_water = 86.38
+stove_wattage = 3
+stove_gas = 0.00019375
+oven_wattage = 5
+tv_wattage = 0.0586
+shower_wattage = 9.55*30 #why does a shower need electricity lol; water consumption in terms of litres/month
 bath_wattage = 150 #per bath
 gheater_wattage = 2303 #do not use electricity; gas used m^3
 eheater_wattage = 360
 kWh_to_price = 0.1279
 litre_to_price = 0.0014247
+meter_cube_to_price = 49.16
 
 sum_water = 0
 sum_electricity = 0
+sum_gas = 0
 
 furnace = Appliance(name="furnace", uses_elec=True)
 dishwasher = Appliance(name="dishwasher", uses_elec=True, uses_water=True)
@@ -103,7 +114,7 @@ ac_frequency = int(input("""\n1. Yes
 if ac_frequency == 1:
 		sum_electricity = sum_electricity + ac.set_elec_cost((ac_frequency * ac_wattage), kWh_to_price)
 elif ac_frequency == 2:
-		sum_electricity = sum_electricity + (ac.set_elec_cost((ac_frequency * ac_wattage), kWh_to_price))/2
+		sum_electricity = sum_electricity + ac.set_elec_cost((ac_frequency/4 * ac_wattage), kWh_to_price)
 elif ac_frequency == 3:
 		sum_electricity = sum_electricity
 print("------------------------------------------")
@@ -126,7 +137,7 @@ else:
 		print("\nBy the way, is your stove \n1. gas-based\n2. electricity-based\nMake your choice: ")
 		choice = int(input())
 		if choice == 1:
-				sum_gas = sum_electricity + gstove.set_elec_cost((stove_frequency * stove_wattage), kWh_to_price)
+				sum_gas = sum_gas + gstove.set_elec_cost((stove_frequency * stove_gas), meter_cube_to_price)
 		elif choice == 2:
 				sum_electricity = sum_electricity + estove.set_elec_cost((stove_frequency * stove_wattage), kWh_to_price)
 			
@@ -153,7 +164,7 @@ print("------------------------------------------")
 print("Showering is a good way to recover yourself.")
 shower_frequency = int(input("How often do you take a shower in a week: "))
 if shower_frequency != 0:
-		sum_water = sum_water + shower.set_elec_cost((shower_frequency * shower_wattage), kWh_to_price)
+		sum_water = sum_water + shower.set_elec_cost((shower_frequency * shower_wattage), litre_to_price)
 		print("\nTaking a bath is more comfortable than taking a shower.")
 		bath_frequency = int(input("How often do you take a bath in a month then: "))
 		if bath_frequency == 0:
@@ -178,7 +189,7 @@ while True:
 				print("Work harder.")
 				break
 		elif heat == 1:
-				sum_gas = sum_gas + gas_heater.set_elec_cost((gheater_wattage), kWh_to_price) 
+				sum_gas = sum_gas + gas_heater.set_gas_cost((gheater_wattage), meter_cube_to_price) 
 				break
 		elif heat == 2:
 				sum_electricity = sum_electricity + elec_heater.set_elec_cost((eheater_wattage), kWh_to_price)
