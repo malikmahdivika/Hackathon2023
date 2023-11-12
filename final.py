@@ -69,7 +69,7 @@ litre_to_price = 0.0014247
 meter_cube_to_price = 49.16
 
 sum_water = 0
-sum_electricity = 0
+sum_electricity = 1105*0.1279
 sum_gas = 0
 
 furnace = Appliance(name="furnace", uses_elec=True)
